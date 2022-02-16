@@ -2291,15 +2291,11 @@ class MaskFormerModel(metaclass=DummyObject):
         requires_backends(self, ["torch"])
 
 
-class MaskFormerPreTrainedModel(metaclass=DummyObject):
+class MaskFormerPretrainedModel(metaclass=DummyObject):
     _backends = ["torch"]
 
     def __init__(self, *args, **kwargs):
         requires_backends(self, ["torch"])
-
-
-def load_tf_weights_in_maskformer(*args, **kwargs):
-    requires_backends(load_tf_weights_in_maskformer, ["torch"])
 
 
 class MBartForCausalLM(metaclass=DummyObject):
@@ -2791,6 +2787,30 @@ class PerceiverModel(metaclass=DummyObject):
 
 
 class PerceiverPreTrainedModel(metaclass=DummyObject):
+    _backends = ["torch"]
+
+    def __init__(self, *args, **kwargs):
+        requires_backends(self, ["torch"])
+
+
+POOLFORMER_PRETRAINED_MODEL_ARCHIVE_LIST = None
+
+
+class PoolFormerForImageClassification(metaclass=DummyObject):
+    _backends = ["torch"]
+
+    def __init__(self, *args, **kwargs):
+        requires_backends(self, ["torch"])
+
+
+class PoolFormerModel(metaclass=DummyObject):
+    _backends = ["torch"]
+
+    def __init__(self, *args, **kwargs):
+        requires_backends(self, ["torch"])
+
+
+class PoolFormerPreTrainedModel(metaclass=DummyObject):
     _backends = ["torch"]
 
     def __init__(self, *args, **kwargs):
