@@ -127,8 +127,7 @@ text = processor.apply_chat_template(messages, add_generation_prompt=False)
 inputs = processor(images=images, text=text, return_tensors="pt").to(device)
 
 labels = inputs.input_ids.clone()
-labels[labels == processor.tokenizer.pad_token_id] = -100
-labels[labels == model.config.image_token_id] = -100
+labels[labels == processor.tokenizer.pad_token_id] = model.config.image_token_id
 
 inputs["labels"] = labels
 
@@ -137,7 +136,7 @@ loss = outputs.loss
 loss.backward()
 ```
 
-Do note that when training Idefics2 on multi-turn conversations between a user and an assistant, one typically also sets all the tokens corresponding to the user messages to -100.
+Do note that when training Idefics2 on multi-turn conversations between a user and an assistant, one typically also sets all the tokens corresponding to the user messages to be masked (in this case Idefics2 masks using the `image_token_id`).
 
 ## Model optimizations: Flash Attention
 
